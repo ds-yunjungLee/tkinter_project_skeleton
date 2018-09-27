@@ -10,14 +10,18 @@ class App(Frame):
         self.num = num
         self.load_images()
 
+
         # TODO, Hun
-        # Conveyor 객체 생성
-        self.conveyor = Conveyor(Frame)
-        
+        upperframe = Frame(master)
+        upperframe.pack()
+        # self.table = Maintable(upperframe, self.figure_images, self.alphabet_images, self.num)
+
         # TODO, Yun
-        # MainTable 객체 생성
-        self.table =  Maintable(Frame)
-        
+        # Conveyor 객체 생성
+        bottomframe = Frame(master);
+        bottomframe.pack(side=BOTTOM)
+        self.conveyor = Conveyor(bottomframe, self.resized_images, self.num)
+
     def load_images(self):
         self.figure_images = list(Image.open("picture\\%d.JPG" % (i+1)) for i in range(self.num*self.num))
         self.alphabet_images = list(PhotoImage(file="alphabet\\%d.GIF" % (i+1)) for i in range(self.num*self.num))

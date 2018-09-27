@@ -4,30 +4,35 @@ from random import *
 class Conveyor(Frame):
     def __init__(self, master, images, width):
         super(Conveyor, self).__init__()
-        self.imagelist = []
+        self.imagelist = [] # 셔플된 이미지의 번호 저장
 
         self.master = master
         self.width = width
-        self.num = width*(width-1)+1
-        self.images = images
-        self.labels = []
+        self.num = width*(width-1)+1 #컨베이어에 넣을 이미지의 수 = 13
+        self.images = images #app에서 받아온 총 16개의 resize된 이미지
+        self.labels = [] #conveyerframe에 추가되는 이미지 label 위젯 리스트
         self.shuffle()
-        
 
-        # TODO #Yun
+        self.upperframe = Frame(self.master) # maker와 final 영역
+        self.upperframe.pack()
+        self.conveyorframe = Frame(self.master) #label widget 영역
+        self.conveyorframe.pack(side=BOTTOM)
+
         # Label widget 생성
-        for i in range(0, self.num):
-            l = Label(self, ..., borderwidth=1, relief=SOLID)
+        self.shuffle();
+        for i, d in enumerate(self.imagelist):
+            print(i, d)
+            l = Label(self.conveyorframe, image=self.images[d], borderwidth=1, relief=SOLID)
             l.grid(column=i, row=1)
             self.labels.append(l)
 
         self.init_canvas()
 
-    # TODO # Hun
+    # TODO # Yun
     # marker와 FINAL 글씨를 그리는 부분. tkinter canvas 사용
     def init_canvas(self):
         pass
-        
+
     # TODO #Sun
     # 이미지 shuffle하는 함수
     def shuffle(self):
