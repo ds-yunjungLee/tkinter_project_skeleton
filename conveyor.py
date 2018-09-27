@@ -14,7 +14,7 @@ class Conveyor(Frame):
         self.shuffle()
         
 
-        # TODO
+        # TODO #Yun
         # Label widget 생성
         for i in range(0, self.num):
             l = Label(self, ..., borderwidth=1, relief=SOLID)
@@ -23,43 +23,50 @@ class Conveyor(Frame):
 
         self.init_canvas()
 
-    # TODO
+    # TODO # Hun
     # marker와 FINAL 글씨를 그리는 부분. tkinter canvas 사용
     def init_canvas(self):
+        pass
         
-    # TODO
+    # TODO #Sun
     # 이미지 shuffle하는 함수
     def shuffle(self):
         self.imagelist = sample(range(0, self.width*self.width), self.num)
 
-    # TODO
+    # TODO #Yun
     # 현재 이미지와 일치하는 이미지를 선택했을 경우
     def correct_match_config(self):
         # FINAL 일 떄
         if self.cur_idx == self.num - 1:
+            pass
         # FINAL 바로 전 일 떄
         elif self.cur_idx == self.num - 2:
+            pass
         # 그 외 일반적인 상황
-        else:            
+        else:
+            pass
 
         
-    # TODO
+    # TODO HUn
     # 현재 이미지와 일치하는 이미지를 선택하지 못했을 경우
     def wrong_match_config(self):
         # 마지막일 때
         if(self.cur_idx == 0):
-            
+            pass
         # FINAL일 때
         elif self.cur_idx == self.num-1:
+            pass
             
         # 그 외 일반적인 상황
-        else:
+        else: pass
         
 
-    # TODO
+    # TODO Sun
     # 오답 시 새로운 이미지를 추가하는 함수
-    def get_new_image(self):        
+    def get_new_image(self):
+        pass
 
-    # TODO
+    # TODO Sun
     # 오답시 왼쪽으로 1칸씩 이동하고 새 이미지를 추가하는 함수
-    def lshift_images(self, new_image):        
+    def lshift_images(self, new_image):
+        pass
