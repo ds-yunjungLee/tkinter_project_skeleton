@@ -111,7 +111,7 @@ class Conveyor(Frame):
 
     # marker 그릴 떄 position return하는 함수.
     def get_triangle_position(self):
-        x = (self.cur_idx - 1) * (self.images[0].width() + 2) + self.margin
+        x = (self.cur_idx) * (self.images[0].width() + 2) + self.margin
         y = self.margin
         tri_length = self.canvas_unit_width - self.margin * 2
         tri_height = self.canvas_height - self.margin * 1.5
