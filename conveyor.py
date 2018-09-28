@@ -28,7 +28,6 @@ class Conveyor(Frame):
             label.grid(column=i, row=1)
             self.labels.append(label)
 
-        print(self.imagelist[self.cur_idx])
         self.init_canvas()
 
     # TODO -> done
@@ -37,15 +36,15 @@ class Conveyor(Frame):
         width = self.num * (self.canvas_unit_width + 2) - 2
         self.canvas = Canvas(self.upperframe, height=self.canvas_height, width=width, background='white')
         self.canvas.pack()
-        # self.canvas.create_polygon(self.get_triangle_position(), fill='yellow', outline='black', tag='marker')
-        self.draw_triangle()
-        self.draw_final()
+        self.canvas.create_polygon(self.get_triangle_position(), fill='yellow', outline='black', tag='marker')
+        self.canvas.create_text(self.get_final_position(), text='FINAL', fill='red', anchor=E, font=("calibri", 14), tag='final')
+
+
 
     # TODO -> done
     # 이미지 shuffle하는 함수
     def shuffle(self):
         self.imagelist = sample(range(0, self.width*self.width), self.num)
-        print(self.imagelist)
 
     # TODO
     # 현재 이미지와 일치하는 이미지를 선택했을 경우
