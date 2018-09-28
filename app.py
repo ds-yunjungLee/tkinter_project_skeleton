@@ -13,7 +13,7 @@ class App(Frame):
         # TODO, Hun
         upperframe = Frame(master)
         upperframe.pack()
-        self.table = Maintable(upperframe, self.figure_images, self.alphabet_images, self.num)
+        self.table = Maintable(upperframe, self.figure_images, self.alphabet_images, self.num, self)
         self.table.pack()
 
         # TODO, Yun
@@ -34,11 +34,14 @@ class App(Frame):
         conveyor_image = self.conveyor.imagelist[self.conveyor.cur_idx]
         table_image = self.table.selected_image
         if conveyor_image == table_image:
-            self.conveyor.correct_match_config()
+            ret = self.conveyor.correct_match_config()
         else:
-            self.conveyor.wrong_match_config()
+            ret = self.conveyor.wrong_match_config()
+
+        self.finish(ret)
 
     # TODO Yun
     # 종료 조건 만족 시 실행
     def finish(self, win):
-        pass
+        if abs(win) == 1:
+            exit()

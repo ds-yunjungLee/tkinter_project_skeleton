@@ -4,7 +4,7 @@ from random import *
 import time
 
 class Maintable(Frame):
-    def __init__(self, master, images, alphabet, width):
+    def __init__(self, master, images, alphabet, width, app):
         super(Maintable, self).__init__()
         self.master = master
         self.width = width
@@ -12,6 +12,7 @@ class Maintable(Frame):
         self.images = images
         self.alphabet = alphabet
         self.selected_image = None
+        self.app = app
 
         self.shuffle()
 
@@ -24,8 +25,8 @@ class Maintable(Frame):
                                 hidden_image=self.images[self.imagelist[i*self.width + j]],
                                 relief=SOLID, overrelief=RIDGE, borderwidth=1)
                 b.grid(column=j, row=i)
-                b.bind('<Button-1>', lambda event: self.show_hidden_image(event, i*self.width + j))
-                b.bind('<ButtonRelease-1>', lambda event: self.hide_image(event, i*self.width + j))
+                b.bind('<Button-1>', self.make_show_hidden_image(i*self.width + j))
+                b.bind('<ButtonRelease-1>', self.make_hide_image(i*self.width + j))
                 self.buttons.append(b)
 
 
@@ -38,11 +39,20 @@ class Maintable(Frame):
     # 마우스 눌렀을 때 이벤트 처리. 
     # 알파벳 이미지를 도형 이미지로 교체
     # event.widget.config 사용
-    def show_hidden_image(self, event, location):
-        self.buttons[location].configure(image=self.images[location])
+
+    def make_show_hidden_image(self, location):
+        def show_hidden_image(event):
+            self.selected_image = location
+            self.buttons[location].configure(image=self.images[location])
+        return show_hidden_image
+
 
     # TODO Sun
     # 마우스 release 이벤트 처리
     # 도형 이미지를 원래 알파벳 이미지로 교체
-    def hide_image(self, event, location):
-        self.buttons[location].configure(image=self.alphabet[location])
+    def make_hide_image(self, location):
+        def show_hide_image(event):
+            self.selected_image = None
+            self.buttons[location].configure(image=self.alphabet[location])
+            self.app.compare_images()
+        return show_hide_image
