@@ -42,7 +42,7 @@ class Maintable(Frame):
 
     def make_show_hidden_image(self, location):
         def show_hidden_image(event):
-            print('image_list in maintable:', self.imagelist)
+            #print('image_list in maintable:', self.imagelist)
             self.selected_image = self.imagelist[location]
             self.buttons[location].configure(image=self.images[self.selected_image])
         return show_hidden_image
