@@ -42,8 +42,9 @@ class Maintable(Frame):
 
     def make_show_hidden_image(self, location):
         def show_hidden_image(event):
-            self.selected_image = location
-            self.buttons[location].configure(image=self.images[location])
+            print('image_list in maintable:', self.imagelist)
+            self.selected_image = self.imagelist[location]
+            self.buttons[location].configure(image=self.images[self.selected_image])
         return show_hidden_image
 
 
@@ -52,7 +53,6 @@ class Maintable(Frame):
     # 도형 이미지를 원래 알파벳 이미지로 교체
     def make_hide_image(self, location):
         def show_hide_image(event):
-            self.selected_image = None
             self.buttons[location].configure(image=self.alphabet[location])
             self.app.compare_images()
         return show_hide_image

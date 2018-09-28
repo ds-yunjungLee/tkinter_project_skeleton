@@ -59,6 +59,9 @@ class Conveyor(Frame):
 
         # 그 외 일반적인 상황
         else:
+            self.cur_idx += 1
+            self.canvas.delete("marker")
+            self.canvas.create_polygon(self.get_triangle_position(), fill='yellow', outline='black', tag='marker')
             return 0
 
         

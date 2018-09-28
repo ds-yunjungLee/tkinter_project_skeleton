@@ -32,7 +32,12 @@ class App(Frame):
     # MainTable에서 선택한 도형 이미지와 Conveyor에서 Marker가 현재 가리키는 이미지를 비교한 후 비교 결과에 따라 처리한다.
     def compare_images(self):
         conveyor_image = self.conveyor.imagelist[self.conveyor.cur_idx]
+        print('conveyor_imglist: ', self.conveyor.imagelist)
         table_image = self.table.selected_image
+        print('cur_idx:', self.conveyor.cur_idx)
+        print('conveyor_image:', conveyor_image)
+        print('table_image:', table_image)
+        print('------')
         if conveyor_image == table_image:
             ret = self.conveyor.correct_match_config()
         else:
