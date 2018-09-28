@@ -49,16 +49,18 @@ class Conveyor(Frame):
 
     # TODO #Yun
     # 현재 이미지와 일치하는 이미지를 선택했을 경우
+    # return -1: fail, 0: normalcase, 1:win
     def correct_match_config(self):
         # FINAL 일 떄
         if self.cur_idx == self.num - 1:
-            pass
+            return 1
         # FINAL 바로 전 일 떄
         elif self.cur_idx == self.num - 2:
-            pass
+            return 0
+
         # 그 외 일반적인 상황
         else:
-            pass
+            return 0
 
         
     # TODO HUn
@@ -67,10 +69,11 @@ class Conveyor(Frame):
     def wrong_match_config(self):
         # 마지막일 때
         if(self.cur_idx == 0):
-            pass
+            return -1
+
         # FINAL일 때
         elif self.cur_idx == self.num-1:
-            pass
+            return 0
             
         # 그 외 일반적인 상황
         else: #TODO -> need to verify
@@ -78,6 +81,7 @@ class Conveyor(Frame):
             self.lshift_images(self.get_new_image())
             self.canvas.delete("marker")
             self.canvas.create_polygon(self.get_triangle_position(), fill='yellow', outline='black', tag='marker')
+            return 0
 
     # TODO -> done
     # 오답 시 새로운 이미지를 추가하는 함수 #정확히는 return하는 함수.
