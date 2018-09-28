@@ -30,7 +30,7 @@ class Conveyor(Frame):
 
         self.init_canvas()
 
-    # TODO -> done
+    # TODO
     # marker와 FINAL 글씨를 그리는 부분. tkinter canvas 사용
     def init_canvas(self):
         width = self.num * (self.canvas_unit_width + 2) - 2
