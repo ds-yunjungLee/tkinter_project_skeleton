@@ -28,6 +28,7 @@ class Conveyor(Frame):
             label.grid(column=i, row=1)
             self.labels.append(label)
 
+        print(self.imagelist[self.cur_idx])
         self.init_canvas()
 
     # TODO -> done
@@ -44,6 +45,7 @@ class Conveyor(Frame):
     # 이미지 shuffle하는 함수
     def shuffle(self):
         self.imagelist = sample(range(0, self.width*self.width), self.num)
+        print(self.imagelist)
 
     # TODO
     # 현재 이미지와 일치하는 이미지를 선택했을 경우
@@ -66,7 +68,6 @@ class Conveyor(Frame):
             self.draw_triangle()
             return 0
 
-        
     # TODO
     # 현재 이미지와 일치하는 이미지를 선택하지 못했을 경우
     # return -1: fail, 0: normalcase, 1:win
@@ -98,7 +99,7 @@ class Conveyor(Frame):
             new_image = sample(range(0, self.width * self.width), 1)[0]
         return new_image
 
-    # TODO -> need to verify
+    # TODO
     # 오답시 왼쪽으로 1칸씩 이동하고 새 이미지를 추가하는 함수
     def lshift_images(self, new_image):
         del self.imagelist[0]
