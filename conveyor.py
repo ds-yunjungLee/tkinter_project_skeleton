@@ -45,23 +45,29 @@ class Conveyor(Frame):
     def shuffle(self):
         self.imagelist = sample(range(0, self.width*self.width), self.num)
 
-    # TODO #Yun
+    # TODO
     # 현재 이미지와 일치하는 이미지를 선택했을 경우
     # return -1: fail, 0: normalcase, 1:win
     def correct_match_config(self):
         # FINAL 일 떄
         if self.cur_idx == self.num - 1:
             return 1
+
         # FINAL 바로 전 일 떄
         elif self.cur_idx == self.num - 2:
+            self.cur_idx += 1
+            self.canvas.delete("final")
+            self.draw_triangle()
             return 0
 
         # 그 외 일반적인 상황
         else:
+            self.cur_idx += 1
+            self.draw_triangle()
             return 0
 
         
-    # TODO HUn
+    # TODO
     # 현재 이미지와 일치하는 이미지를 선택하지 못했을 경우
     # return -1: fail, 0: normalcase, 1:win
     def wrong_match_config(self):
