@@ -16,7 +16,7 @@ class Maintable(Frame):
 
         self.shuffle()
 
-        # TODO Hun
+        # TODO
         # 16개의 ImageButton 객체 생성 및 이벤트 핸들러 바인딩
         self.buttons = []
         for i in range(0, self.width):
@@ -30,25 +30,24 @@ class Maintable(Frame):
                 self.buttons.append(b)
 
 
-    # TODO Yun
+    # TODO
     # 이미지 shuffle하는 함수
     def shuffle(self):
         self.imagelist = sample(range(0, self.num), self.num)
 
-    # TODO Yun
+    # TODO
     # 마우스 눌렀을 때 이벤트 처리. 
     # 알파벳 이미지를 도형 이미지로 교체
     # event.widget.config 사용
 
     def make_show_hidden_image(self, location):
         def show_hidden_image(event):
-            #print('image_list in maintable:', self.imagelist)
             self.selected_image = self.imagelist[location]
             self.buttons[location].configure(image=self.images[self.selected_image])
         return show_hidden_image
 
 
-    # TODO Sun
+    # TODO
     # 마우스 release 이벤트 처리
     # 도형 이미지를 원래 알파벳 이미지로 교체
     def make_hide_image(self, location):

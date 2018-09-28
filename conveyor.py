@@ -21,7 +21,7 @@ class Conveyor(Frame):
 
         self.shuffle()
 
-        #TODO -> done
+        #TODO
         # Label widget 생성
         for i, d in enumerate(self.imagelist):
             label = Label(self.conveyorframe, image=self.images[d], borderwidth=1, relief=SOLID)
@@ -41,7 +41,7 @@ class Conveyor(Frame):
 
 
 
-    # TODO -> done
+    # TODO
     # 이미지 shuffle하는 함수
     def shuffle(self):
         self.imagelist = sample(range(0, self.width*self.width), self.num)
@@ -90,7 +90,7 @@ class Conveyor(Frame):
             self.draw_triangle()
             return 0
 
-    # TODO -> done
+    # TODO
     # 오답 시 새로운 이미지를 추가하는 함수 #정확히는 return하는 함수.
     def get_new_image(self):
         new_image = sample(range(0, self.width * self.width), 1)[0]
@@ -103,7 +103,6 @@ class Conveyor(Frame):
     def lshift_images(self, new_image):
         del self.imagelist[0]
         self.imagelist.append(new_image)
-        print(self.imagelist)
         for i, d in enumerate(self.imagelist):
             label = Label(self.conveyorframe, image=self.images[d], borderwidth=1, relief=SOLID)
             label.grid(column=i, row=1)

@@ -10,13 +10,13 @@ class App(Frame):
         self.num = num
         self.load_images()
 
-        # TODO, Hun
+        # TODO
         upperframe = Frame(master)
         upperframe.pack()
         self.table = Maintable(upperframe, self.figure_images, self.alphabet_images, self.num, self)
         self.table.pack()
 
-        # TODO, Yun
+        # TODO
         # Conveyor 객체 생성
         bottomframe = Frame(master)
         bottomframe.pack(side=BOTTOM)
@@ -28,16 +28,11 @@ class App(Frame):
         self.resized_images = list(ImageTk.PhotoImage(self.figure_images[i].resize((50, 50), Image.ANTIALIAS)) for i in range(self.num*self.num))
         self.figure_images = list(ImageTk.PhotoImage(self.figure_images[i]) for i in range(self.num*self.num))
 
-    # TODO Hun
+    # TODO
     # MainTable에서 선택한 도형 이미지와 Conveyor에서 Marker가 현재 가리키는 이미지를 비교한 후 비교 결과에 따라 처리한다.
     def compare_images(self):
         conveyor_image = self.conveyor.imagelist[self.conveyor.cur_idx]
-        #print('conveyor_imglist: ', self.conveyor.imagelist)
         table_image = self.table.selected_image
-        #print('cur_idx:', self.conveyor.cur_idx)
-        #print('conveyor_image:', conveyor_image)
-        #print('table_image:', table_image)
-        #print('------')
         if conveyor_image == table_image:
             ret = self.conveyor.correct_match_config()
         else:
@@ -45,7 +40,7 @@ class App(Frame):
 
         self.finish(ret)
 
-    # TODO Yun
+    # TODO
     # 종료 조건 만족 시 실행
     def finish(self, win):
         if abs(win) == 1:
