@@ -18,7 +18,6 @@ class Conveyor(Frame):
         self.canvas_height = self.images[0].height() * 0.6 #canvas의 높이
         self.margin = 7 # marker와 final 글자위치에 사용하는 margin
         self.cur_idx = 9 # marker가 가르키는 위치
-        self.image_flags = [False] * width * width # 맞춘 그림리스트
 
         self.shuffle()
 
@@ -73,6 +72,8 @@ class Conveyor(Frame):
 
         # FINAL일 때
         elif self.cur_idx == self.num-1:
+            self.cur_idx -= 1
+
             return 0
             
         # 그 외 일반적인 상황
@@ -87,7 +88,7 @@ class Conveyor(Frame):
     # 오답 시 새로운 이미지를 추가하는 함수 #정확히는 return하는 함수.
     def get_new_image(self):
         new_image = sample(range(0, self.width * self.width), 1)[0]
-        while (new_image in self.imagelist) or (self.image_flags[new_image]):
+        while new_image in self.imagelist:
             new_image = sample(range(0, self.width * self.width), 1)[0]
         return new_image
 
