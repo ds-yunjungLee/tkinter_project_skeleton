@@ -5,7 +5,6 @@ class Conveyor(Frame):
     def __init__(self, master, images, width):
         super(Conveyor, self).__init__()
         self.imagelist = [] # 셔플된 이미지의 번호 저장
-        self.image_flags = [] #한번이라도 사용된 image 번호는 모두 저장.
         self.master = master
         self.width = width
         self.num = width*(width-1)+1 #컨베이어에 넣을 이미지의 수 = 13
@@ -19,6 +18,7 @@ class Conveyor(Frame):
         self.canvas_height = self.images[0].height() * 0.6 #canvas의 높이
         self.margin = 7 # marker와 final 글자위치에 사용하는 margin
         self.cur_idx = 9 # marker가 가르키는 위치
+        self.image_flags = [False] * self.num # 맞춘 그림리스트
 
         self.shuffle()
 
@@ -46,7 +46,6 @@ class Conveyor(Frame):
     # 이미지 shuffle하는 함수
     def shuffle(self):
         self.imagelist = sample(range(0, self.width*self.width), self.num)
-        self.image_flags = self.imagelist.copy() #list copy 주의.
 
     # TODO #Yun
     # 현재 이미지와 일치하는 이미지를 선택했을 경우
@@ -64,6 +63,7 @@ class Conveyor(Frame):
         
     # TODO HUn
     # 현재 이미지와 일치하는 이미지를 선택하지 못했을 경우
+    # return -1: fail, 0: normalcase, 1:win
     def wrong_match_config(self):
         # 마지막일 때
         if(self.cur_idx == 0):
@@ -83,14 +83,13 @@ class Conveyor(Frame):
     # 오답 시 새로운 이미지를 추가하는 함수 #정확히는 return하는 함수.
     def get_new_image(self):
         new_image = sample(range(0, self.width * self.width), 1)[0]
-        while new_image in self.image_flags:
+        while (new_image in self.imagelist) and (self.image_flags[new_image]):
             new_image = sample(range(0, self.width * self.width), 1)[0]
         return new_image
 
     # TODO -> need to verify
     # 오답시 왼쪽으로 1칸씩 이동하고 새 이미지를 추가하는 함수
     def lshift_images(self, new_image):
-        self.image_flags.append(new_image)
         del self.imagelist[0]
         self.imagelist.append(new_image)
         print(self.imagelist)
