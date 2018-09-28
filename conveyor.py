@@ -18,7 +18,7 @@ class Conveyor(Frame):
         self.canvas_height = self.images[0].height() * 0.6 #canvas의 높이
         self.margin = 7 # marker와 final 글자위치에 사용하는 margin
         self.cur_idx = 9 # marker가 가르키는 위치
-        self.image_flags = [False] * self.num # 맞춘 그림리스트
+        self.image_flags = [False] * width * width # 맞춘 그림리스트
 
         self.shuffle()
 
@@ -68,7 +68,7 @@ class Conveyor(Frame):
     # return -1: fail, 0: normalcase, 1:win
     def wrong_match_config(self):
         # 마지막일 때
-        if(self.cur_idx == 0):
+        if self.cur_idx == 0:
             return -1
 
         # FINAL일 때
@@ -76,7 +76,7 @@ class Conveyor(Frame):
             return 0
             
         # 그 외 일반적인 상황
-        else: #TODO -> need to verify
+        else:
             self.cur_idx -= 1
             self.lshift_images(self.get_new_image())
             self.canvas.delete("marker")
@@ -87,7 +87,7 @@ class Conveyor(Frame):
     # 오답 시 새로운 이미지를 추가하는 함수 #정확히는 return하는 함수.
     def get_new_image(self):
         new_image = sample(range(0, self.width * self.width), 1)[0]
-        while (new_image in self.imagelist) and (self.image_flags[new_image]):
+        while (new_image in self.imagelist) or (self.image_flags[new_image]):
             new_image = sample(range(0, self.width * self.width), 1)[0]
         return new_image
 
