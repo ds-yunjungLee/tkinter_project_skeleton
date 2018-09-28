@@ -36,10 +36,9 @@ class Conveyor(Frame):
         width = self.num * (self.canvas_unit_width + 2) - 2
         self.canvas = Canvas(self.upperframe, height=self.canvas_height, width=width, background='white')
         self.canvas.pack()
-        self.canvas.create_polygon(self.get_triangle_position(), fill='yellow', outline='black', tag='marker')
-        self.canvas.create_text(self.get_final_position(), text='FINAL', fill='red', anchor=E, font=("calibri", 14), tag='final')
-
-
+        # self.canvas.create_polygon(self.get_triangle_position(), fill='yellow', outline='black', tag='marker')
+        self.draw_triangle()
+        self.draw_final()
 
     # TODO -> done
     # 이미지 shuffle하는 함수
@@ -73,15 +72,16 @@ class Conveyor(Frame):
         # FINAL일 때
         elif self.cur_idx == self.num-1:
             self.cur_idx -= 1
-
+            self.lshift_images(self.get_new_image())
+            self.draw_triangle()
+            self.draw_final()
             return 0
             
         # 그 외 일반적인 상황
         else:
             self.cur_idx -= 1
             self.lshift_images(self.get_new_image())
-            self.canvas.delete("marker")
-            self.canvas.create_polygon(self.get_triangle_position(), fill='yellow', outline='black', tag='marker')
+            self.draw_triangle()
             return 0
 
     # TODO -> done
@@ -116,3 +116,11 @@ class Conveyor(Frame):
         x = self.num * (self.canvas_unit_width + 2)
         y = self.canvas_height / 2
         return (x, y)
+
+    def draw_triangle(self):
+        self.canvas.delete("marker")
+        self.canvas.create_polygon(self.get_triangle_position(), fill='yellow', outline='black', tag='marker')
+
+    def draw_final(self):
+        self.canvas.create_text(self.get_final_position(), text='FINAL', fill='red', anchor=E, font=("calibri", 14), tag='final')
+
